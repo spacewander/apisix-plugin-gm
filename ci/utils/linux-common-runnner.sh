@@ -54,6 +54,8 @@ install_module() {
 run_case() {
     export_or_prefix
 
+    openresty -V
+
     ./bin/apisix init
     ./bin/apisix init_etcd
 
