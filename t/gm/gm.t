@@ -17,7 +17,7 @@ _EOC_
 
     my $http_config = $block->http_config // '';
     $http_config .= <<_EOC_;
-        ssl_ciphers ALL:!aNULL:!MD5;
+        ssl_ciphers HIGH:!aNULL:!MD5;
 _EOC_
 
     $block->set_value("http_config", $http_config);
@@ -103,6 +103,9 @@ passed
 openssl s_client -connect localhost:1994 -servername localhost -cipher ECDHE-SM2-WITH-SM4-SM3 -enable_ntls -ntls -verifyCAfile t/certs/gm_ca.crt -sign_cert t/certs/client_sign.crt -sign_key t/certs/client_sign.key -enc_cert t/certs/client_enc.crt -enc_key t/certs/client_enc.key
 --- response_body eval
 qr/^CONNECTED/
+--- no_error_log
+SSL_do_handshake() failed
+[error]
 
 
 
